@@ -81,3 +81,4 @@ C:\Users\Kurian-Sandra\Desktop\CaseSummaryEmbedding\obj\Debug\net9.0\refint\Case
 C:\Users\Kurian-Sandra\Desktop\CaseSummaryEmbedding\obj\Debug\net9.0\CaseSummaryEmbedding.pdb
 C:\Users\Kurian-Sandra\Desktop\CaseSummaryEmbedding\obj\Debug\net9.0\CaseSummaryEmbedding.genruntimeconfig.cache
 C:\Users\Kurian-Sandra\Desktop\CaseSummaryEmbedding\obj\Debug\net9.0\ref\CaseSummaryEmbedding.dll
+C:\Users\Kurian-Sandra\Desktop\CaseSummaryEmbedding\obj\Debug\net9.0\CaseSummaryEmbedding.sourcelink.json
