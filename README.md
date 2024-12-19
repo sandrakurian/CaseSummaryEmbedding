@@ -88,8 +88,10 @@ Example:
 EmbedFromCsvAndSave(textEmbedder, "CaseSummaries.csv", "CaseSummaries.json");
 ```
 
-## Structure
+## Other Files
 
-- **CaseSummary**: Represents a case summary with a case number, the summary text, and its embedding.
-- **TextEmbedding**: Handles the process of generating embeddings using ML.NET and cosine similarity for comparing case summaries.
-- **Program**: The entry point of the application, where data is processed and the similarity search is performed.
+**CaseSummary.json**: Represents a case summary with a case number, the summary text, and its embedding.
+
+**TextEmbedding**: Handles the process of generating embeddings using ML.NET and cosine similarity for comparing case summaries.
+
+**Program**: The entry point of the application, where data is processed and the similarity search is performed.
