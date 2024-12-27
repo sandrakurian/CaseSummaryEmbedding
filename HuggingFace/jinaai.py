@@ -36,3 +36,22 @@ for i in range(len(texts)):
     for j in range(i + 1, len(texts)):
         similarity = similarity_matrix[i, j].item()
         print(f"Similarity between text {i + 1} and text {j + 1}: {similarity:.4f}")
+
+'''
+RESULTS:
+Similarity between text 1 and text 2: 0.5678
+Similarity between text 1 and text 3: 0.5450
+Similarity between text 1 and text 4: 0.5616
+Similarity between text 1 and text 5: 0.5231
+Similarity between text 1 and text 6: 0.5952
+Similarity between text 2 and text 3: 0.6119
+Similarity between text 2 and text 4: 0.4281
+Similarity between text 2 and text 5: 0.5749
+Similarity between text 2 and text 6: 0.4945
+Similarity between text 3 and text 4: 0.4285
+Similarity between text 3 and text 5: 0.4756
+Similarity between text 3 and text 6: 0.4942
+Similarity between text 4 and text 5: 0.4571
+Similarity between text 4 and text 6: 0.4944
+Similarity between text 5 and text 6: 0.4747
+'''
