@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "XbzfPcY+i50=",
+  "dgSpecHash": "D4GXx7/m1yw=",
   "success": true,
-  "projectFilePath": "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\CaseSummaryEmbedding.csproj",
+  "projectFilePath": "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\CSharpMethod\\CaseSummaryEmbedding.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Kurian-Sandra\\.nuget\\packages\\csvhelper\\33.0.1\\csvhelper.33.0.1.nupkg.sha512",
     "C:\\Users\\Kurian-Sandra\\.nuget\\packages\\microsoft.ml\\4.0.0\\microsoft.ml.4.0.0.nupkg.sha512",
