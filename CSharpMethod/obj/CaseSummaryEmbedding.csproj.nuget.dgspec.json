@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\CaseSummaryEmbedding.csproj": {}
+    "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\CSharpMethod\\CaseSummaryEmbedding.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\CaseSummaryEmbedding.csproj": {
+    "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\CSharpMethod\\CaseSummaryEmbedding.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\CaseSummaryEmbedding.csproj",
+        "projectUniqueName": "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\CSharpMethod\\CaseSummaryEmbedding.csproj",
         "projectName": "CaseSummaryEmbedding",
-        "projectPath": "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\CaseSummaryEmbedding.csproj",
+        "projectPath": "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\CSharpMethod\\CaseSummaryEmbedding.csproj",
         "packagesPath": "C:\\Users\\Kurian-Sandra\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\obj\\",
+        "outputPath": "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\CSharpMethod\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
@@ -26,6 +26,7 @@
         ],
         "sources": {
           "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "C:\\Program Files\\dotnet\\library-packs": {},
           "https://api.nuget.org/v3/index.json": {}
         },
         "frameworks": {
