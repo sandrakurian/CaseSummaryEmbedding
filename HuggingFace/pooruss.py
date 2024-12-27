@@ -1,3 +1,5 @@
+# https://huggingface.co/pooruss/xlm-roberta-large-qp-similarity/tree/main
+
 # Use a pipeline as a high-level helper
 from transformers import pipeline
 import torch
@@ -41,3 +43,22 @@ for i in range(len(texts)):
     for j in range(i + 1, len(texts)):
         similarity = similarity_matrix[i, j].item()
         print(f"Similarity between text {i + 1} and text {j + 1}: {similarity:.4f}")
+
+'''
+RESULTS:
+Similarity between text 1 and text 2: 0.8716
+Similarity between text 1 and text 3: 0.7618
+Similarity between text 1 and text 4: 0.8932
+Similarity between text 1 and text 5: 0.8012
+Similarity between text 1 and text 6: 0.8552
+Similarity between text 2 and text 3: 0.7815
+Similarity between text 2 and text 4: 0.8099
+Similarity between text 2 and text 5: 0.7892
+Similarity between text 2 and text 6: 0.8498
+Similarity between text 3 and text 4: 0.7447
+Similarity between text 3 and text 5: 0.6640
+Similarity between text 3 and text 6: 0.7167
+Similarity between text 4 and text 5: 0.7800
+Similarity between text 4 and text 6: 0.7156
+Similarity between text 5 and text 6: 0.6891
+'''
