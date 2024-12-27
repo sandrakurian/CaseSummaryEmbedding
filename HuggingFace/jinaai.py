@@ -31,6 +31,8 @@ embeddings = embeddings / embeddings.norm(dim=1, keepdim=True)
 # Compute similarities (dot product is equivalent to cosine similarity here)
 similarity_matrix = torch.matmul(embeddings, embeddings.T)
 
-# Example: similarity between the first and second text
-similarity = similarity_matrix[0, 1].item()
-print(f"Similarity between the first and second text: {similarity:.4f}")
+# Loop through all pairs of texts and print similarities
+for i in range(len(texts)):
+    for j in range(i + 1, len(texts)):
+        similarity = similarity_matrix[i, j].item()
+        print(f"Similarity between text {i + 1} and text {j + 1}: {similarity:.4f}")
