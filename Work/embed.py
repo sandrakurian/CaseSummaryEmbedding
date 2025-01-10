@@ -6,7 +6,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from datetime import datetime
-
+from common_fx import process_file_content as process_file_content
 
 # Initialize the model
 model = SentenceTransformer('all-mpnet-base-v2')
@@ -45,6 +45,7 @@ def log_inputs(case_id, output, str_button):
         truncated_paragraph = paragraph[:50]
         logger.info(f"{i+1}.\t{truncated_paragraph}")
     """
+
 
 def load_existing_data(file_path):
     """
@@ -99,7 +100,6 @@ def save_embeddings(file_path, case_id, section_embeddings):
         logger.info(f"Embeddings for case {case_id} saved successfully.")
     except Exception as e:
         logger.error(f"An error occurred while saving the file: {e}")
-
 
 def embedding_exist(existing_embeddings, case_id):
     """
@@ -161,7 +161,7 @@ def summary(file_path, case_id, output):
     # Save embeddings to file
     save_embeddings(file_path, case_id, section_embeddings)
 
-def sandra(file_path, case_id, output):
+def sandra(file_path, case_id):
     # Load existing embeddings from the JSON file
     existing_embeddings = load_existing_data(file_path)
             
@@ -177,6 +177,7 @@ def sandra(file_path, case_id, output):
     print(" ".join(item[0] for item in top_similar_cases))
     
     logger.info(f"Top 3 most similar cases to {case_id}:")
+    logger.info(process_file_content(case_id, short=True))
     for similar_case, similarity_score in top_similar_cases:
         logger.info(f"\tCase {similar_case} Similarity: {similarity_score:.4f}")
 
@@ -187,6 +188,7 @@ def sandra(file_path, case_id, output):
         section_similarities, not_compared_sections = find_section_similarities(case_id, similar_case, target_case_embeddings, similar_case_embeddings)
         
         logger.info(f"\nSection similarities for case {similar_case}:")
+        logger.info(process_file_content(similar_case, short=True))
         for section, similarity in section_similarities.items():
             logger.info(f"\tSection: {section}, Similarity: {similarity:.4f}")
                 
@@ -194,6 +196,8 @@ def sandra(file_path, case_id, output):
             logger.info("\tSections that were not compared:")
             for section in not_compared_sections:
                 logger.info(f"\t\t{section}")
+    
+    return top_similar_cases
 
 if __name__ == "__main__":
     try:
@@ -221,6 +225,6 @@ def main(case_id, output, str_button):
         if str_button == "summary":
             summary(file_path, case_id, output)
         elif str_button == "sandra":
-            sandra(file_path, case_id, output)
-
+            top_similar = sandra(file_path, case_id)
+            return top_similar
 
