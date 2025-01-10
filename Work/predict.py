@@ -1,4 +1,6 @@
 import openai
+openai.api_key = "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"
+
 from common_fx import process_file_content as process_file_content
 
 def main(main_case, similar_cases):
@@ -19,9 +21,9 @@ def main(main_case, similar_cases):
     # Call OpenAI API
     try:
         response = openai.ChatCompletion.create(
-            model="gpt-4",
+            model="gpt-3.5-turbo",  # Use GPT-3.5 instead of GPT-4
             messages=[{"role": "system", "content": "You are an AI analyst."},
-                     {"role": "user", "content": prompt}],
+                    {"role": "user", "content": prompt}],
             temperature=0.7,
             max_tokens=1500
         )

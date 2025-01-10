@@ -344,3 +344,14 @@ This case involves Mary Brown, a single mother who is facing challenges related 
 
 ========== Log Session Started at 16:01 ==========
 
+
+========== Log Session Started at 16:35 ==========
+
+
+========== Log Session Started at 16:37 ==========
+
+error_code=model_not_found error_message='The model `gpt-4` does not exist or you do not have access to it.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+
+========== Log Session Started at 16:39 ==========
+
+error_code=insufficient_quota error_message='You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.' error_param=None error_type=insufficient_quota message='OpenAI API error received' stream_error=False
