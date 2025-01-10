@@ -1,18 +1,50 @@
 import os
 import sys
 import json
+import logging
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
+from datetime import datetime
+
 
 # Initialize the model
 model = SentenceTransformer('all-mpnet-base-v2')
 
-def print_inputs(case_id, output, str_button):
-    """Display info about the case being processed."""
-    print(f"Processing FSFNPersonID+case: {case_id}")
-    print(f"Processing with button: {str_button}")
-    print()
+# Set up logging
+log_file = "script.log"
+
+
+# Function to log the header with current time
+def log_header():
+    current_time = datetime.now().strftime("%H:%M")  # Get current time in hh:mm format
+    logger.info(f"\n========== Log Session Started at {current_time} ==========\n")
+
+
+logging.basicConfig(
+    filename=log_file,
+    level=logging.INFO,
+    format="%(message)s"  # Only log the message without timestamp and level by default
+)
+logger = logging.getLogger()
+
+# Log the header only once at the start of the log session
+log_header()
+
+def log_inputs(case_id, output, str_button):
+    """Log info about the case being processed."""
+    logger.info(f"Processing FSFNPersonID+case: {case_id}")
+    logger.info(f"Processing with button: {str_button}")
+
+    """
+    # Split text into paragraphs
+    paragraphs = output.split("\n")
+
+    # Log first bit of each paragraph
+    for i, paragraph in enumerate(paragraphs):
+        truncated_paragraph = paragraph[:50]
+        logger.info(f"{i+1}.\t{truncated_paragraph}")
+    """
 
 def load_existing_data(file_path):
     """
@@ -24,7 +56,7 @@ def load_existing_data(file_path):
             with open(file_path, 'r') as file:
                 return json.load(file)
         except Exception as e:
-            print(f"Error loading file: {e}")
+            logger.error(f"Error loading file: {e}")
     return {}
 
 def embed_sections(case_summary):
@@ -51,17 +83,23 @@ def save_embeddings(file_path, case_id, section_embeddings):
     data = load_existing_data(file_path)
     serializable_embeddings = {k: v.tolist() for k, v in section_embeddings.items()}
 
-    # Update/Add embedding
+    # Add or update embeddings for the case
     data[case_id] = serializable_embeddings
-    print(f"{'Updating' if case_id in data else 'Adding'} case: {case_id}")
 
-    # Save data
+    # Log if updating or adding a case
+    if case_id in data:
+        logger.info(f"Updating case: {case_id}")
+    else:
+        logger.info(f"Adding case: {case_id}")
+
+    # Save updated data to the file
     try:
         with open(file_path, 'w') as file:
             json.dump(data, file, indent=2, separators=(',', ': '), ensure_ascii=False)
-        print(f"Embeddings for case {case_id} saved successfully.")
+        logger.info(f"Embeddings for case {case_id} saved successfully.")
     except Exception as e:
-        print(f"An error occurred while saving the file: {e}")
+        logger.error(f"An error occurred while saving the file: {e}")
+
 
 def embedding_exist(existing_embeddings, case_id):
     """
@@ -70,7 +108,7 @@ def embedding_exist(existing_embeddings, case_id):
     """
     if case_id in existing_embeddings:
         return case_id, existing_embeddings[case_id]
-    print(f"{case_id} does not have a summary embedding. Summarize the case before clicking 'sandra'")
+    logger.warning(f"{case_id} does not have a summary embedding. Summarize the case before clicking 'sandra'")
     return None
 
 def find_section_similarities(case_id, target_case_id, case_embeddings, target_case_embeddings):
@@ -117,6 +155,45 @@ def find_most_similar_cases(case_id, target_case_embeddings, existing_embeddings
     similarities.sort(key=lambda x: x[1], reverse=True)
     return similarities[:top_n]
 
+def summary(file_path, case_id, output):
+    # Generate embeddings
+    section_embeddings = embed_sections(output)
+    # Save embeddings to file
+    save_embeddings(file_path, case_id, section_embeddings)
+
+def sandra(file_path, case_id, output):
+    # Load existing embeddings from the JSON file
+    existing_embeddings = load_existing_data(file_path)
+            
+    # Check if the case_id exists in the existing embeddings
+    if case_id not in existing_embeddings:
+        raise ValueError(f"Case {case_id} does not have an embedding. You must first summarize the case before proceeding.")
+            
+    # Get the embedding for the current case
+    target_case_embeddings = existing_embeddings[case_id]
+
+    # Find the top 3 most similar cases
+    top_similar_cases = find_most_similar_cases(case_id, target_case_embeddings, existing_embeddings)
+    print(" ".join(item[0] for item in top_similar_cases))
+    
+    logger.info(f"Top 3 most similar cases to {case_id}:")
+    for similar_case, similarity_score in top_similar_cases:
+        logger.info(f"\tCase {similar_case} Similarity: {similarity_score:.4f}")
+
+    # Now compare the common sections between the current case and the most similar cases
+    for similar_case, _ in top_similar_cases:
+        similar_case_embeddings = existing_embeddings[similar_case]
+        
+        section_similarities, not_compared_sections = find_section_similarities(case_id, similar_case, target_case_embeddings, similar_case_embeddings)
+        
+        logger.info(f"\nSection similarities for case {similar_case}:")
+        for section, similarity in section_similarities.items():
+            logger.info(f"\tSection: {section}, Similarity: {similarity:.4f}")
+                
+        if not_compared_sections:
+            logger.info("\tSections that were not compared:")
+            for section in not_compared_sections:
+                logger.info(f"\t\t{section}")
 
 if __name__ == "__main__":
     try:
@@ -131,51 +208,19 @@ if __name__ == "__main__":
         if "not contain notes in Client 360" in output:
             raise ValueError(f"There is no notes or detailed information about case {case_id} and cannot do anything with this information.")
 
-        print_inputs(case_id, output, str_button)
+        main(case_id, output, str_button)
+    except Exception as e:
+        logger.error(f"An error occurred: {e}")
 
-        file_path = "Work\embeddings.json"
+def main(case_id, output, str_button):
+        # Log inputs
+        log_inputs(case_id, output, str_button)
+
+        file_path = "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\Work\\embeddings.json"
 
         if str_button == "summary":
-            # Generate embeddings
-            section_embeddings = embed_sections(output)
-            # Save embeddings to file
-            save_embeddings(file_path, case_id, section_embeddings)
+            summary(file_path, case_id, output)
         elif str_button == "sandra":
-            # Load existing embeddings from the JSON file
-            existing_embeddings = load_existing_data(file_path)
-            
-            # Check if the case_id exists in the existing embeddings
-            if case_id not in existing_embeddings:
-                raise ValueError(f"Case {case_id} does not have an embedding. You must first summarize the case before proceeding.")
-            
-            # Get the embedding for the current case
-            target_case_embeddings = existing_embeddings[case_id]
+            sandra(file_path, case_id, output)
 
-            # Find the top 3 most similar cases
-            top_similar_cases = find_most_similar_cases(case_id, target_case_embeddings, existing_embeddings)
-            
-            print("Top 3 most similar cases:")
-            for similar_case, similarity_score in top_similar_cases:
-                print(f"\tCase {similar_case} Similarity: {similarity_score:.4f}")
 
-            # Now compare the common sections between the current case and the most similar cases
-            for similar_case, _ in top_similar_cases:
-                # Retrieve the section embeddings for the similar case
-                similar_case_embeddings = existing_embeddings[similar_case]
-                
-                # Compute the section-level similarities between the case and the most similar case
-                section_similarities, not_compared_sections = find_section_similarities(case_id, similar_case, target_case_embeddings, similar_case_embeddings)
-                
-                # Print the similarity scores for each common section
-                print(f"\nSection similarities for case {similar_case}:")
-                for section, similarity in section_similarities.items():
-                    print(f"\tSection: {section}, Similarity: {similarity:.4f}")
-                
-                # Print sections that were not compared
-                if not_compared_sections:
-                    print("\tSections that were not compared:")
-                    for section in not_compared_sections:
-                        print(f"\t\t{section}")
-
-    except Exception as e:
-        print(f"An error occurred: {e}")

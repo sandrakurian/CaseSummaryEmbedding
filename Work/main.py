@@ -1,4 +1,6 @@
 import os
+from embed import main as embed_main  # Import the main function from embed.py
+# from your_module import read_text_files  # Replace `your_module` with the module containing read_text_files
 
 def read_text_files(base_path, target_folder):
     """
@@ -12,7 +14,7 @@ def read_text_files(base_path, target_folder):
     file_data = {}
 
     if not os.path.exists(folder_path):
-        print(f"Error: The directory {folder_path} does not exist.")
+        print(f"Error: The directory '{folder_path}' does not exist.")
         return file_data
 
     for file_name in os.listdir(folder_path):
@@ -23,9 +25,13 @@ def read_text_files(base_path, target_folder):
             try:
                 with open(file_path, 'r', encoding='utf-8') as file:
                     content = file.read()
+                    # Split the content into paragraphs based on double newlines
+                    paragraphs = content.split('\n\n')
+                    # Remove the first two paragraphs and join the rest back together
+                    content = '\n\n'.join(paragraphs[1:])
                     file_data[file_name] = content
             except Exception as e:
-                print(f"Error reading file {file_name}: {e}")
+                print(f"Error reading file '{file_name}': {e}")
     return file_data
 
 if __name__ == "__main__":
@@ -40,6 +46,7 @@ if __name__ == "__main__":
 
     # Display file names and content
     for file_name, content in files_content.items():
-        print(f"File: {file_name}\nContent:\n{content[:50]}")
+        # print(f"File: {file_name}\nContent:\n{content[:50]}")
+        embed_main(file_name, content, "summary")
 
     print("-----")
