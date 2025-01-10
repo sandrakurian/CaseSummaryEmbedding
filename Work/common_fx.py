@@ -1,5 +1,27 @@
 import os
 
+#from common_fx import read_text_files as read_text_files
+def read_text_files(base_path, target_folder):
+    """
+    Reads all text files from a specified folder and returns their names and content.
+
+    :param base_path: Base directory from which the target folder is located.
+    :param target_folder: Relative path to the folder containing text files.
+    :return: Dictionary where keys are file names and values are file contents.
+    """
+    folder_path = os.path.join(base_path, target_folder)
+    file_data = {}
+
+    if not os.path.exists(folder_path):
+        print(f"Error: The directory '{folder_path}' does not exist.")
+        return file_data
+
+    for file_name in os.listdir(folder_path):
+        file_path = os.path.join(folder_path, file_name)
+        file_data[file_name] = process_file_content (file_name, short = False)
+
+    return file_data
+
 #from common_fx import process_file_content as process_file_content
 def process_file_content(file_name, short = True, file_path = "C:\\Users\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\ExampleCases"):
     try:

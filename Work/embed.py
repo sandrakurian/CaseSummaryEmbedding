@@ -174,7 +174,6 @@ def sandra(file_path, case_id):
 
     # Find the top 3 most similar cases
     top_similar_cases = find_most_similar_cases(case_id, target_case_embeddings, existing_embeddings)
-    print(" ".join(item[0] for item in top_similar_cases))
     
     logger.info(f"Top 3 most similar cases to {case_id}:")
     logger.info(process_file_content(case_id, short=True))
@@ -197,7 +196,7 @@ def sandra(file_path, case_id):
             for section in not_compared_sections:
                 logger.info(f"\t\t{section}")
     
-    return top_similar_cases
+    return [item[0] for item in top_similar_cases]
 
 if __name__ == "__main__":
     try:
