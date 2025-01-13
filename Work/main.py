@@ -20,13 +20,13 @@ if __name__ == "__main__":
     # Relative path to the folder containing text files
     target_folder = "C:\\Users\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\ExampleCases"
 
-    # summary(target_folder)
+    summary(target_folder)
 
-    # # print("-----")
-    # case = "Sarah.txt"
-
-    # top_similar_cases = embed_main(case, None, "sandra")
     # print("-----")
+    case = "Sarah.txt"
+
+    top_similar_cases = embed_main(case, None, "sandra")
+    print("-----")
 
     # prediction = prediction_main(case, top_similar_cases)
     prediction = predict_main("Sarah.txt", ['SarahJakeMia.txt', 'SarahRachel.txt', 'MaryBrown.txt'])

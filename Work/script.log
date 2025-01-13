@@ -1,5 +1,5 @@
 
-========== Log Session Started at 12:20 ==========
+========== Log Session Started at 14:01 ==========
 
 Processing FSFNPersonID+case: AaravRaj.txt
 Processing with button: summary
@@ -179,179 +179,31 @@ The case involves a single mother, Sarah, and her two children, aged 8 and 12, w
 
 Section similarities for case SarahJakeMia.txt:
 The case involves Sarah, a 30-year-old single mother, and her two children, Jake (6) and Mia (2), who were referred to Child Protective Services (CPS) following reports from a neighbor about unsupervised children and unsafe home conditions. During an investigation, CPS discovered a cluttered home with exposed hazards, insufficient food, and evidence of parental substance abuse. The children were temporarily placed with a relative while Sarah undergoes assessment and intervention.
-	Section: Case Summary, Similarity: 0.6998
 	Section: Financial Issues, Similarity: 0.8431
-	Section: Sequence of Events, Similarity: 0.8265
-	Section: Health-Related Issues, Similarity: 0.7123
-	Section: Problems Identified, Similarity: 0.8668
-	Section: Social Issues, Similarity: 0.7481
 	Section: Legal Issues, Similarity: 0.6323
-
-Section similarities for case SarahRachel.txt:
-This case involves a same-sex couple, Sarah and Rachel, and their two children, Ava and Mia. The family became involved with social services following reports of emotional neglect and concerning behavior from the children, who were observed to be withdrawn and displaying signs of anxiety. Sarah and Rachel have been experiencing significant stress in their relationship, partly due to Sarah's recent job loss and Rachel's difficulty managing work-life balance. As a result, there has been increased tension in the home. The children were temporarily placed with Sarah’s sister while the parents work on addressing their issues through therapy and parenting support. The case is under review to determine if Sarah and Rachel can provide a stable and emotionally supportive environment for the children.
-	Section: Case Summary, Similarity: 0.6568
-	Section: Financial Issues, Similarity: 0.7438
-	Section: Sequence of Events, Similarity: 0.8335
-	Section: Health-Related Issues, Similarity: 0.8159
-	Section: Problems Identified, Similarity: 0.8255
-	Section: Social Issues, Similarity: 0.7413
-	Section: Legal Issues, Similarity: 0.5476
-
-Section similarities for case MaryBrown.txt:
-This case involves Mary Brown, a single mother who is facing challenges related to job loss and homelessness. The primary parties involved are Mary Brown and her two children (ages 5 and 12). Key events include Mary's recent job loss, eviction from their home, and her struggle to find stable housing and employment. The outcome of the case is ongoing, with Mary receiving support from various social services to help her regain stability.
-	Section: Case Summary, Similarity: 0.7466
-	Section: Financial Issues, Similarity: 0.7336
-	Section: Sequence of Events, Similarity: 0.8255
-	Section: Health-Related Issues, Similarity: 0.6831
-	Section: Problems Identified, Similarity: 0.8219
-	Section: Social Issues, Similarity: 0.7461
-	Section: Legal Issues, Similarity: 0.5259
-
-========== Log Session Started at 14:59 ==========
-
-Processing FSFNPersonID+case: Sarah.txt
-Processing with button: sandra
-Top 3 most similar cases to Sarah.txt:
-The case involves a single mother, Sarah, and her two children, aged 8 and 12, who were displaced following an incident of domestic violence involving her ex-partner, Mark. After fleeing their home, Sarah sought temporary shelter but faced challenges related to housing, finances, and emotional well-being. Intervention services have been involved to provide assistance and ensure the safety of the family.
-	Case SarahJakeMia.txt Similarity: 0.8962
-	Case SarahRachel.txt Similarity: 0.8757
-	Case MaryBrown.txt Similarity: 0.8626
-
-Section similarities for case SarahJakeMia.txt:
-The case involves Sarah, a 30-year-old single mother, and her two children, Jake (6) and Mia (2), who were referred to Child Protective Services (CPS) following reports from a neighbor about unsupervised children and unsafe home conditions. During an investigation, CPS discovered a cluttered home with exposed hazards, insufficient food, and evidence of parental substance abuse. The children were temporarily placed with a relative while Sarah undergoes assessment and intervention.
+	Section: Sequence of Events, Similarity: 0.8265
 	Section: Case Summary, Similarity: 0.6998
 	Section: Problems Identified, Similarity: 0.8668
 	Section: Health-Related Issues, Similarity: 0.7123
 	Section: Social Issues, Similarity: 0.7481
-	Section: Legal Issues, Similarity: 0.6323
-	Section: Financial Issues, Similarity: 0.8431
-	Section: Sequence of Events, Similarity: 0.8265
 
 Section similarities for case SarahRachel.txt:
 This case involves a same-sex couple, Sarah and Rachel, and their two children, Ava and Mia. The family became involved with social services following reports of emotional neglect and concerning behavior from the children, who were observed to be withdrawn and displaying signs of anxiety. Sarah and Rachel have been experiencing significant stress in their relationship, partly due to Sarah's recent job loss and Rachel's difficulty managing work-life balance. As a result, there has been increased tension in the home. The children were temporarily placed with Sarah’s sister while the parents work on addressing their issues through therapy and parenting support. The case is under review to determine if Sarah and Rachel can provide a stable and emotionally supportive environment for the children.
+	Section: Financial Issues, Similarity: 0.7438
+	Section: Legal Issues, Similarity: 0.5476
+	Section: Sequence of Events, Similarity: 0.8335
 	Section: Case Summary, Similarity: 0.6568
 	Section: Problems Identified, Similarity: 0.8255
 	Section: Health-Related Issues, Similarity: 0.8159
 	Section: Social Issues, Similarity: 0.7413
-	Section: Legal Issues, Similarity: 0.5476
-	Section: Financial Issues, Similarity: 0.7438
-	Section: Sequence of Events, Similarity: 0.8335
 
 Section similarities for case MaryBrown.txt:
 This case involves Mary Brown, a single mother who is facing challenges related to job loss and homelessness. The primary parties involved are Mary Brown and her two children (ages 5 and 12). Key events include Mary's recent job loss, eviction from their home, and her struggle to find stable housing and employment. The outcome of the case is ongoing, with Mary receiving support from various social services to help her regain stability.
+	Section: Financial Issues, Similarity: 0.7336
+	Section: Legal Issues, Similarity: 0.5259
+	Section: Sequence of Events, Similarity: 0.8255
 	Section: Case Summary, Similarity: 0.7466
 	Section: Problems Identified, Similarity: 0.8219
 	Section: Health-Related Issues, Similarity: 0.6831
 	Section: Social Issues, Similarity: 0.7461
-	Section: Legal Issues, Similarity: 0.5259
-	Section: Financial Issues, Similarity: 0.7336
-	Section: Sequence of Events, Similarity: 0.8255
-
-========== Log Session Started at 15:00 ==========
-
-Processing FSFNPersonID+case: Sarah.txt
-Processing with button: sandra
-Top 3 most similar cases to Sarah.txt:
-The case involves a single mother, Sarah, and her two children, aged 8 and 12, who were displaced following an incident of domestic violence involving her ex-partner, Mark. After fleeing their home, Sarah sought temporary shelter but faced challenges related to housing, finances, and emotional well-being. Intervention services have been involved to provide assistance and ensure the safety of the family.
-	Case SarahJakeMia.txt Similarity: 0.8962
-	Case SarahRachel.txt Similarity: 0.8757
-	Case MaryBrown.txt Similarity: 0.8626
-
-Section similarities for case SarahJakeMia.txt:
-The case involves Sarah, a 30-year-old single mother, and her two children, Jake (6) and Mia (2), who were referred to Child Protective Services (CPS) following reports from a neighbor about unsupervised children and unsafe home conditions. During an investigation, CPS discovered a cluttered home with exposed hazards, insufficient food, and evidence of parental substance abuse. The children were temporarily placed with a relative while Sarah undergoes assessment and intervention.
-	Section: Health-Related Issues, Similarity: 0.7123
-	Section: Legal Issues, Similarity: 0.6323
-	Section: Problems Identified, Similarity: 0.8668
-	Section: Financial Issues, Similarity: 0.8431
-	Section: Social Issues, Similarity: 0.7481
-	Section: Sequence of Events, Similarity: 0.8265
-	Section: Case Summary, Similarity: 0.6998
-
-Section similarities for case SarahRachel.txt:
-This case involves a same-sex couple, Sarah and Rachel, and their two children, Ava and Mia. The family became involved with social services following reports of emotional neglect and concerning behavior from the children, who were observed to be withdrawn and displaying signs of anxiety. Sarah and Rachel have been experiencing significant stress in their relationship, partly due to Sarah's recent job loss and Rachel's difficulty managing work-life balance. As a result, there has been increased tension in the home. The children were temporarily placed with Sarah’s sister while the parents work on addressing their issues through therapy and parenting support. The case is under review to determine if Sarah and Rachel can provide a stable and emotionally supportive environment for the children.
-	Section: Health-Related Issues, Similarity: 0.8159
-	Section: Legal Issues, Similarity: 0.5476
-	Section: Problems Identified, Similarity: 0.8255
-	Section: Financial Issues, Similarity: 0.7438
-	Section: Social Issues, Similarity: 0.7413
-	Section: Sequence of Events, Similarity: 0.8335
-	Section: Case Summary, Similarity: 0.6568
-
-Section similarities for case MaryBrown.txt:
-This case involves Mary Brown, a single mother who is facing challenges related to job loss and homelessness. The primary parties involved are Mary Brown and her two children (ages 5 and 12). Key events include Mary's recent job loss, eviction from their home, and her struggle to find stable housing and employment. The outcome of the case is ongoing, with Mary receiving support from various social services to help her regain stability.
-	Section: Health-Related Issues, Similarity: 0.6831
-	Section: Legal Issues, Similarity: 0.5259
-	Section: Problems Identified, Similarity: 0.8219
-	Section: Financial Issues, Similarity: 0.7336
-	Section: Social Issues, Similarity: 0.7461
-	Section: Sequence of Events, Similarity: 0.8255
-	Section: Case Summary, Similarity: 0.7466
-
-========== Log Session Started at 15:04 ==========
-
-Processing FSFNPersonID+case: Sarah.txt
-Processing with button: sandra
-Top 3 most similar cases to Sarah.txt:
-The case involves a single mother, Sarah, and her two children, aged 8 and 12, who were displaced following an incident of domestic violence involving her ex-partner, Mark. After fleeing their home, Sarah sought temporary shelter but faced challenges related to housing, finances, and emotional well-being. Intervention services have been involved to provide assistance and ensure the safety of the family.
-	Case SarahJakeMia.txt Similarity: 0.8962
-	Case SarahRachel.txt Similarity: 0.8757
-	Case MaryBrown.txt Similarity: 0.8626
-
-Section similarities for case SarahJakeMia.txt:
-The case involves Sarah, a 30-year-old single mother, and her two children, Jake (6) and Mia (2), who were referred to Child Protective Services (CPS) following reports from a neighbor about unsupervised children and unsafe home conditions. During an investigation, CPS discovered a cluttered home with exposed hazards, insufficient food, and evidence of parental substance abuse. The children were temporarily placed with a relative while Sarah undergoes assessment and intervention.
-	Section: Problems Identified, Similarity: 0.8668
-	Section: Case Summary, Similarity: 0.6998
-	Section: Health-Related Issues, Similarity: 0.7123
-	Section: Social Issues, Similarity: 0.7481
-	Section: Sequence of Events, Similarity: 0.8265
-	Section: Legal Issues, Similarity: 0.6323
-	Section: Financial Issues, Similarity: 0.8431
-
-Section similarities for case SarahRachel.txt:
-This case involves a same-sex couple, Sarah and Rachel, and their two children, Ava and Mia. The family became involved with social services following reports of emotional neglect and concerning behavior from the children, who were observed to be withdrawn and displaying signs of anxiety. Sarah and Rachel have been experiencing significant stress in their relationship, partly due to Sarah's recent job loss and Rachel's difficulty managing work-life balance. As a result, there has been increased tension in the home. The children were temporarily placed with Sarah’s sister while the parents work on addressing their issues through therapy and parenting support. The case is under review to determine if Sarah and Rachel can provide a stable and emotionally supportive environment for the children.
-	Section: Problems Identified, Similarity: 0.8255
-	Section: Case Summary, Similarity: 0.6568
-	Section: Health-Related Issues, Similarity: 0.8159
-	Section: Social Issues, Similarity: 0.7413
-	Section: Sequence of Events, Similarity: 0.8335
-	Section: Legal Issues, Similarity: 0.5476
-	Section: Financial Issues, Similarity: 0.7438
-
-Section similarities for case MaryBrown.txt:
-This case involves Mary Brown, a single mother who is facing challenges related to job loss and homelessness. The primary parties involved are Mary Brown and her two children (ages 5 and 12). Key events include Mary's recent job loss, eviction from their home, and her struggle to find stable housing and employment. The outcome of the case is ongoing, with Mary receiving support from various social services to help her regain stability.
-	Section: Problems Identified, Similarity: 0.8219
-	Section: Case Summary, Similarity: 0.7466
-	Section: Health-Related Issues, Similarity: 0.6831
-	Section: Social Issues, Similarity: 0.7461
-	Section: Sequence of Events, Similarity: 0.8255
-	Section: Legal Issues, Similarity: 0.5259
-	Section: Financial Issues, Similarity: 0.7336
-
-========== Log Session Started at 15:14 ==========
-
-
-========== Log Session Started at 15:18 ==========
-
-
-========== Log Session Started at 15:18 ==========
-
-
-========== Log Session Started at 15:20 ==========
-
-
-========== Log Session Started at 15:54 ==========
-
-
-========== Log Session Started at 16:01 ==========
-
-
-========== Log Session Started at 16:35 ==========
-
-
-========== Log Session Started at 16:37 ==========
-
-error_code=model_not_found error_message='The model `gpt-4` does not exist or you do not have access to it.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
-
-========== Log Session Started at 16:39 ==========
-
-error_code=insufficient_quota error_message='You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.' error_param=None error_type=insufficient_quota message='OpenAI API error received' stream_error=False
+error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************ptoA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
