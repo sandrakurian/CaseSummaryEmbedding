@@ -1,5 +1,5 @@
 import openai
-openai.api_key = "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"
+openai.api_key = "sk-svcacct-QonuAKoxk2DIaQ3U6E_siY50OOCW5Z48MnX6SHd903jvupoLsvBxpvtZ3qeqcT3BlbkFJsX8Oh9UMZUEJSDRCGhCDcxZ2JMdmrq-pYKEHPBvXVeQXc4aPZ1ooMgu49VR1wA"
 
 from common_fx import process_file_content as process_file_content
 

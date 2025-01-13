@@ -207,3 +207,11 @@ This case involves Mary Brown, a single mother who is facing challenges related 
 	Section: Health-Related Issues, Similarity: 0.6831
 	Section: Social Issues, Similarity: 0.7461
 error_code=invalid_api_key error_message='Incorrect API key provided: sk-proj-********************************************************************************************************************************************************ptoA. You can find your API key at https://platform.openai.com/account/api-keys.' error_param=None error_type=invalid_request_error message='OpenAI API error received' stream_error=False
+
+========== Log Session Started at 14:45 ==========
+
+error_code=insufficient_quota error_message='You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.' error_param=None error_type=insufficient_quota message='OpenAI API error received' stream_error=False
+
+========== Log Session Started at 14:58 ==========
+
+error_code=insufficient_quota error_message='You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.' error_param=None error_type=insufficient_quota message='OpenAI API error received' stream_error=False
