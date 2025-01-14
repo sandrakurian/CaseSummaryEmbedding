@@ -14,22 +14,22 @@ def summary(target_folder):
         embed_main(file_name, content, "summary")
 
 if __name__ == "__main__":
-    # Base directory of the script
-    base_path = os.path.abspath(os.path.dirname(__file__))
+    # # Base directory of the script
+    # base_path = os.path.abspath(os.path.dirname(__file__))
 
-    # Relative path to the folder containing text files
-    target_folder = "C:\\Users\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\ExampleCases"
+    # # Relative path to the folder containing text files
+    # target_folder = "C:\\Users\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\ExampleCases"
 
     # summary(target_folder)
 
-    # # print("-----")
+    # print("-----")
     # case = "Sarah.txt"
 
     # top_similar_cases = embed_main(case, None, "sandra")
     # print("-----")
 
-    # prediction = prediction_main(case, top_similar_cases)
-    prediction = predict_main("Sarah.txt", ['SarahJakeMia.txt', 'SarahRachel.txt', 'MaryBrown.txt'])
+    # prediction = predict_main(case, top_similar_cases)
+    prediction = predict_main("Sarah.txt", ["SarahJakeMia.txt", "SarahRachel.txt", "MaryBrown.txt"])
     print(prediction)
 
     print("-----")

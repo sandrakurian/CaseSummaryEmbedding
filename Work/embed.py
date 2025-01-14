@@ -1,51 +1,22 @@
 import os
 import sys
 import json
-import logging
 import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from datetime import datetime
-from common_fx import process_file_content as process_file_content
+from common_fx import process_file_content, setup_logger
 
 # Initialize the model
 model = SentenceTransformer('all-mpnet-base-v2')
 
-# Set up logging
-log_file = "script.log"
-
-
-# Function to log the header with current time
-def log_header():
-    current_time = datetime.now().strftime("%H:%M")  # Get current time in hh:mm format
-    logger.info(f"\n========== Log Session Started at {current_time} ==========\n")
-
-
-logging.basicConfig(
-    filename=log_file,
-    level=logging.INFO,
-    format="%(message)s"  # Only log the message without timestamp and level by default
-)
-logger = logging.getLogger()
-
-# Log the header only once at the start of the log session
-log_header()
+# Set up the logger by calling the setup_logger function
+logger = setup_logger()
 
 def log_inputs(case_id, output, str_button):
     """Log info about the case being processed."""
     logger.info(f"Processing FSFNPersonID+case: {case_id}")
     logger.info(f"Processing with button: {str_button}")
-
-    """
-    # Split text into paragraphs
-    paragraphs = output.split("\n")
-
-    # Log first bit of each paragraph
-    for i, paragraph in enumerate(paragraphs):
-        truncated_paragraph = paragraph[:50]
-        logger.info(f"{i+1}.\t{truncated_paragraph}")
-    """
-
 
 def load_existing_data(file_path):
     """
@@ -57,7 +28,7 @@ def load_existing_data(file_path):
             with open(file_path, 'r') as file:
                 return json.load(file)
         except Exception as e:
-            logger.error(f"Error loading file: {e}")
+            logger.error(f"Error loading file (embed.py): {e}")
     return {}
 
 def embed_sections(case_summary):
@@ -99,7 +70,7 @@ def save_embeddings(file_path, case_id, section_embeddings):
             json.dump(data, file, indent=2, separators=(',', ': '), ensure_ascii=False)
         logger.info(f"Embeddings for case {case_id} saved successfully.")
     except Exception as e:
-        logger.error(f"An error occurred while saving the file: {e}")
+        logger.error(f"An error occurred while saving the file (embed.py): {e}")
 
 def embedding_exist(existing_embeddings, case_id):
     """
@@ -167,13 +138,14 @@ def sandra(file_path, case_id):
             
     # Check if the case_id exists in the existing embeddings
     if case_id not in existing_embeddings:
-        raise ValueError(f"Case {case_id} does not have an embedding. You must first summarize the case before proceeding.")
+        raise ValueError(f"Case {case_id} does not have an embedding. You must first summarize the case before proceeding. (embed.py/sandra())")
             
     # Get the embedding for the current case
     target_case_embeddings = existing_embeddings[case_id]
 
     # Find the top 3 most similar cases
     top_similar_cases = find_most_similar_cases(case_id, target_case_embeddings, existing_embeddings)
+    print(" ".join(item[0] for item in top_similar_cases))
     
     logger.info(f"Top 3 most similar cases to {case_id}:")
     logger.info(process_file_content(case_id, short=True))
@@ -196,7 +168,8 @@ def sandra(file_path, case_id):
             for section in not_compared_sections:
                 logger.info(f"\t\t{section}")
     
-    return [item[0] for item in top_similar_cases]
+    return top_similar_cases
+
 
 if __name__ == "__main__":
     try:
@@ -207,23 +180,22 @@ if __name__ == "__main__":
 
         # Validate inputs
         if not case_id:
-            raise ValueError("case_id cannot be empty.")
+            raise ValueError("case_id cannot be empty (embed.py).")
         if "not contain notes in Client 360" in output:
-            raise ValueError(f"There is no notes or detailed information about case {case_id} and cannot do anything with this information.")
+            raise ValueError(f"There is no notes or detailed information about case {case_id} and cannot do anything with this information(embed.py).")
 
         main(case_id, output, str_button)
     except Exception as e:
-        logger.error(f"An error occurred: {e}")
+        logger.error(f"An error occurred (embed.py): {e}")
 
 def main(case_id, output, str_button):
-        # Log inputs
-        log_inputs(case_id, output, str_button)
+    # Log inputs
+    log_inputs(case_id, output, str_button)
 
-        file_path = "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\Work\\embeddings.json"
+    file_path = "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\Work\\embeddings.json"
 
-        if str_button == "summary":
-            summary(file_path, case_id, output)
-        elif str_button == "sandra":
-            top_similar = sandra(file_path, case_id)
-            return top_similar
-
+    if str_button == "summary":
+        summary(file_path, case_id, output)
+    elif str_button == "sandra":
+        top_similar = sandra(file_path, case_id)
+        return top_similar
