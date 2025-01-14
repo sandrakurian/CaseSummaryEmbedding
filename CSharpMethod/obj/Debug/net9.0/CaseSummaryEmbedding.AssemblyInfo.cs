@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("CaseSummaryEmbedding")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+e717153f628fa526bc51e4b7143d37737b0fa76d")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+b03caa88b141f656242989274315b12baee913db")]
 [assembly: System.Reflection.AssemblyProductAttribute("CaseSummaryEmbedding")]
 [assembly: System.Reflection.AssemblyTitleAttribute("CaseSummaryEmbedding")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

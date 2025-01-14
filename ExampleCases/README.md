@@ -1,4 +1,6 @@
-The examples listed here are from chatGPT, copilot. These is the prompt that I used
+# CASES IN THIS FOLDER ARE NOT REAL
+
+The examples listed here are from chatGPT. These is the prompt that I used
 
 # Prompt 1
 
