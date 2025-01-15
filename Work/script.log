@@ -1,0 +1,195 @@
+
+========== Log Session Started at 14:04 ==========
+
+
+========== Log Session Started at 14:04 ==========
+
+Secret key loaded successfully.
+Load pretrained SentenceTransformer: all-mpnet-base-v2
+Use pytorch device_name: cpu
+
+========== Log Session Started at 14:15 ==========
+
+
+========== Log Session Started at 14:15 ==========
+
+Secret key loaded successfully.
+Load pretrained SentenceTransformer: all-mpnet-base-v2
+Use pytorch device_name: cpu
+Updating case: AaravRaj.txt
+Updating case: AbasiAmira.txt
+Updating case: Akira.txt
+Updating case: Alana.txt
+Updating case: Alessandro.txt
+Updating case: Amina.txt
+Updating case: Carmen.txt
+Updating case: Chris.txt
+Updating case: ClaireMichael.txt
+Updating case: Dalia.txt
+Updating case: DavidLilyEmma.txt
+Updating case: Ekaterina.txt
+Updating case: EmilyZoe.txt
+Updating case: EthanOlivia.txt
+Updating case: Igor.txt
+Updating case: JamesAaron.txt
+Updating case: Jarek.txt
+Updating case: Javier.txt
+Updating case: Johan.txt
+Updating case: JohnEmily.txt
+Updating case: Johnson.txt
+Updating case: Jose.txt
+Updating case: Karen.txt
+Updating case: Lila.txt
+Updating case: LuisRosa.txt
+Updating case: Maria.txt
+Updating case: MaryBrown.txt
+Updating case: Maya.txt
+Updating case: Mei.txt
+Updating case: MichaelAdam.txt
+Updating case: NiaJalen.txt
+Updating case: NoahLiam.txt
+Updating case: PriyaArjun.txt
+Updating case: Rachel.txt
+Updating case: README.md
+Updating case: Sarah.txt
+Updating case: SarahJakeMia.txt
+Updating case: SarahRachel.txt
+Updating case: Serena.txt
+Updating case: ThomasSophie.txt
+Updating case: Zara.txt
+Updating case: ZoeTheo.txt
+Top 3 most similar cases to Sarah.txt:
+The case involves a single mother, Sarah, and her two children, aged 8 and 12, who were displaced following an incident of domestic violence involving her ex-partner, Mark. After fleeing their home, Sarah sought temporary shelter but faced challenges related to housing, finances, and emotional well-being. Intervention services have been involved to provide assistance and ensure the safety of the family.
+	Case SarahJakeMia.txt Similarity: 0.8962
+	Case SarahRachel.txt Similarity: 0.8757
+	Case MaryBrown.txt Similarity: 0.8626
+
+Section similarities for case SarahJakeMia.txt:
+The case involves Sarah, a 30-year-old single mother, and her two children, Jake (6) and Mia (2), who were referred to Child Protective Services (CPS) following reports from a neighbor about unsupervised children and unsafe home conditions. During an investigation, CPS discovered a cluttered home with exposed hazards, insufficient food, and evidence of parental substance abuse. The children were temporarily placed with a relative while Sarah undergoes assessment and intervention.
+	Section: Sequence of Events, Similarity: 0.8265
+	Section: Financial Issues, Similarity: 0.8431
+	Section: Legal Issues, Similarity: 0.6323
+	Section: Problems Identified, Similarity: 0.8668
+	Section: Case Summary, Similarity: 0.6998
+	Section: Social Issues, Similarity: 0.7481
+	Section: Health-Related Issues, Similarity: 0.7123
+
+Section similarities for case SarahRachel.txt:
+This case involves a same-sex couple, Sarah and Rachel, and their two children, Ava and Mia. The family became involved with social services following reports of emotional neglect and concerning behavior from the children, who were observed to be withdrawn and displaying signs of anxiety. Sarah and Rachel have been experiencing significant stress in their relationship, partly due to Sarah's recent job loss and Rachel's difficulty managing work-life balance. As a result, there has been increased tension in the home. The children were temporarily placed with Sarah’s sister while the parents work on addressing their issues through therapy and parenting support. The case is under review to determine if Sarah and Rachel can provide a stable and emotionally supportive environment for the children.
+	Section: Sequence of Events, Similarity: 0.8335
+	Section: Financial Issues, Similarity: 0.7438
+	Section: Legal Issues, Similarity: 0.5476
+	Section: Problems Identified, Similarity: 0.8255
+	Section: Case Summary, Similarity: 0.6568
+	Section: Social Issues, Similarity: 0.7413
+	Section: Health-Related Issues, Similarity: 0.8159
+
+Section similarities for case MaryBrown.txt:
+This case involves Mary Brown, a single mother who is facing challenges related to job loss and homelessness. The primary parties involved are Mary Brown and her two children (ages 5 and 12). Key events include Mary's recent job loss, eviction from their home, and her struggle to find stable housing and employment. The outcome of the case is ongoing, with Mary receiving support from various social services to help her regain stability.
+	Section: Sequence of Events, Similarity: 0.8255
+	Section: Financial Issues, Similarity: 0.7336
+	Section: Legal Issues, Similarity: 0.5259
+	Section: Problems Identified, Similarity: 0.8219
+	Section: Case Summary, Similarity: 0.7466
+	Section: Social Issues, Similarity: 0.7461
+	Section: Health-Related Issues, Similarity: 0.6831
+**1. Analysis:**
+
+Sarah's case presents a complex interplay of immediate and long-term challenges. The most pressing issue is the immediate safety of Sarah and her children, given the potential for Mark to violate the protective order.  His substance abuse significantly exacerbates this risk.  Beyond safety, Sarah's mental health and the children's emotional and physical well-being are significant concerns requiring ongoing intervention.  The legal proceedings, while crucial for Sarah's protection and custody arrangements, will take time and may be emotionally taxing.  Financially, Sarah faces immediate hardship, necessitating swift access to rental assistance, food stamps, and employment support. Finally, the lack of social support network amplifies the challenges she faces in securing stable housing and coping with stress.
+
+The long-term prognosis hinges on the success of several intertwined factors:  the efficacy of Sarah's mental health treatment, the outcome of the legal proceedings against Mark, the speed at which Sarah secures stable employment and housing, and the development of a stronger support network.  Without sufficient support, the family may face chronic instability, impacting the children's development and Sarah's ability to recover from trauma.  Conversely, with appropriate support and consistent engagement in available services, there's a reasonable chance for a positive outcome, characterized by a safe, stable home environment, and improved mental and physical health for the entire family.
+
+
+**2. Predictions:**
+
+* **Positive Outcome (Probable):** Sarah will successfully obtain a protective order, leading to Mark's limited contact with the family.  Through therapy and medication, Sarah's mental health will improve, enabling her to effectively care for her children.  With the aid of intervention services and government assistance, she will secure stable housing and employment, leading to financial stability. The children will receive necessary mental health services and show improvement in their emotional and physical well-being.  Custody will be granted to Sarah, with potentially supervised visitation for Mark if he completes substance abuse treatment.
+
+* **Neutral Outcome (Possible):** Sarah obtains the protective order, but Mark's substance abuse leads to continued violations, requiring further legal intervention. While Sarah receives assistance, achieving financial and housing stability proves slower than anticipated, due to factors like job market competition or bureaucratic delays.  The children's emotional and behavioral problems will persist but might show some improvement over time with ongoing support.
+
+* **Negative Outcome (Unlikely, but possible):**  Failure to obtain or enforce the protective order leaves Sarah and her children vulnerable. Sarah's mental health may worsen, impacting her parenting abilities.  Financial hardship persists, leading to continued housing instability and the potential for the children to enter the foster care system. Mark's substance abuse might remain unaddressed.
+
+
+**3. Referrals:**
+
+The similar cases significantly enhance the prediction of Sarah's future.  All three cases illustrate the common challenges faced by single mothers struggling with poverty, housing instability, and mental health issues.
+
+* **Similarity to SarahJakeMia:** This case highlights the connection between parental substance abuse and child neglect, mirroring a key aspect of Sarah's situation in which Mark's substance abuse created the dangerous situation.  The successful intervention and reunification efforts in that case suggest a pathway towards positive resolution for Sarah, provided adequate support is given.  The difference is that Sarah's case stems from domestic violence, which requires legal intervention in a way the other case does not.
+
+
+* **Similarity to SarahRachel:**  This case demonstrates the impact of parental stress and mental health issues on children's well-being, directly paralleling Sarah's situation. This case reinforces the importance of providing mental health support to Sarah and her children and highlights the need for addressing the root causes of family instability.  The key difference lies in the source of the stress; while both cases involve parental mental health, Sarah's case stems from direct violence and trauma inflicted by a third party.
+
+
+* **Similarity to MaryBrown:** This case emphasizes the consequences of job loss and homelessness on families.  It underscores the importance of rapid intervention through social services, including shelters, food banks, and job placement programs. Similar to Sarah's case, securing stable housing and employment is crucial for long-term success. The primary difference is the lack of a dangerous partner for Mary.
+
+
+By comparing and contrasting these similar cases, we can better assess the likelihood of different outcomes for Sarah.  The presence of Mark's abusive behavior and substance abuse introduces a level of risk not present in the other cases, making a fully positive outcome less certain but still probable with strong intervention and support. The common threads of the cases (mental health, financial instability, and the well-being of children) reinforce the need for comprehensive intervention.
+
+
+========== Log Session Started at 14:24 ==========
+
+
+========== Log Session Started at 14:24 ==========
+
+Secret key loaded successfully.
+Load pretrained SentenceTransformer: all-mpnet-base-v2
+Use pytorch device_name: cpu
+Top 3 most similar cases to Zara.txt:
+The case involving Zara centers around her struggles with anxiety and difficulties in adjusting to a new school environment after relocating with her family. Zara, a 15-year-old girl, has experienced increased levels of anxiety which have affected her academic performance and social interactions. Her parents are seeking support from mental health professionals to improve her coping strategies and assist her in acclimating to her new surroundings.
+	Case Alana.txt Similarity: 0.7640
+	Case Amina.txt Similarity: 0.7324
+	Case Maya.txt Similarity: 0.6996
+
+Section similarities for case Alana.txt:
+The case involving Alana centers around her struggles with severe depression and anxiety, significantly affecting her ability to function in daily life. Alana, a 16-year-old, has recently experienced a crisis that led to her being hospitalized for a short period. The family's inadequate support structure and the absence of access to mental health resources are critical factors in the challenges she faces. A comprehensive care plan has been developed to address her mental health needs.
+	Section: Sequence of Events, Similarity: 0.7889
+	Section: Financial Issues, Similarity: 0.5896
+	Section: Case Summary, Similarity: 0.6785
+	Section: Legal Issues, Similarity: 0.7310
+	Section: Social Issues, Similarity: 0.6410
+	Section: Problems Identified, Similarity: 0.8971
+	Section: Health-Related Issues, Similarity: 0.6738
+
+Section similarities for case Amina.txt:
+The case involves 11-year-old Amina, who is experiencing significant challenges with her academic performance and social interactions due to suspected undiagnosed autism spectrum disorder (ASD). Amina, a bright and creative child, has been struggling to relate to her peers and has faced difficulties in communication in the classroom. Her parents have decided to consult educational and psychological professionals to assess her needs and secure the appropriate resources to support her development and learning journey.
+	Section: Sequence of Events, Similarity: 0.7330
+	Section: Financial Issues, Similarity: 0.6599
+	Section: Case Summary, Similarity: 0.5760
+	Section: Legal Issues, Similarity: 0.7342
+	Section: Social Issues, Similarity: 0.7122
+	Section: Problems Identified, Similarity: 0.7873
+	Section: Health-Related Issues, Similarity: 0.5168
+
+Section similarities for case Maya.txt:
+The case involves 45-year-old Maya and her 12-year-old daughter, Zara, who were brought to the attention of child protective services after neighbors reported ongoing domestic disputes and signs of neglect. Upon investigation, it was found that Maya has been battling alcohol use disorder, which has affected her ability to provide a stable and nurturing environment for Zara. As a result, Zara has been left unsupervised for extended periods, often having to fend for herself. Currently, Zara has been placed in a temporary foster home while Maya addresses her addiction issues and works towards rebuilding her parental capabilities.
+	Section: Sequence of Events, Similarity: 0.7404
+	Section: Financial Issues, Similarity: 0.5357
+	Section: Case Summary, Similarity: 0.5898
+	Section: Legal Issues, Similarity: 0.5509
+	Section: Social Issues, Similarity: 0.6773
+	Section: Problems Identified, Similarity: 0.5390
+	Section: Health-Related Issues, Similarity: 0.6018
+## Analysis of Zara's Case and Possible Future Outcomes
+
+Zara's case highlights the challenges faced by a teenager adjusting to a new environment and experiencing anxiety. The key issue is her generalized anxiety disorder (GAD), impacting her academic performance and social life.  The family's financial constraints further complicate accessing necessary mental health services.  While no immediate legal issues exist, securing appropriate educational accommodations under a 504 plan is crucial.  The successful navigation of these challenges depends on the family's ability to access and utilize available resources, Zara's receptiveness to therapy, and the school's cooperation in providing support.
+
+The most likely outcome will involve a combination of therapy, potential medication (if recommended), and school accommodations.  Successful implementation will hinge on several factors:  the effectiveness of the chosen therapy, Zara's engagement in treatment, and the availability of affordable mental health services.  A positive outcome would see Zara's anxiety reduced, improved academic performance, and increased social integration. Conversely, a less positive outcome might involve a prolonged period of struggle, potential exacerbation of symptoms, and continued social isolation if access to resources proves difficult or treatment proves ineffective.  The family's financial situation could also significantly impact the outcome, delaying or preventing access to crucial services.
+
+## Predictions
+
+* **Positive Outcome:** Zara successfully completes therapy, experiences a significant reduction in anxiety symptoms, adapts to her new school, and develops positive social relationships. She receives necessary school accommodations (504 plan) and maintains good academic standing. The family secures affordable mental health services through community resources or financial assistance programs.
+* **Neutral Outcome:** Zara shows some improvement in her anxiety but doesn't fully overcome her symptoms. She receives partial school accommodations and maintains moderate academic performance.  The family faces ongoing financial challenges impacting the consistency and duration of her therapy. Social integration remains a work in progress.
+* **Negative Outcome:** Zara's anxiety worsens despite therapy, leading to school avoidance, social isolation, and decreased academic performance.  The family fails to secure adequate financial assistance for mental health services, resulting in inconsistent or interrupted treatment.  Her case escalates, potentially requiring more intensive interventions or specialized care.
+
+
+## Referrals
+
+The similar cases significantly enhanced the prediction and analysis of Zara's case by illustrating various scenarios and potential complications.
+
+* **Alana's case** highlights the severity that anxiety and depression can reach, leading to hospitalization and the need for more intensive interventions.  This underscores the importance of early intervention and proactive management in Zara's case, to prevent a similar crisis.  The similarities include financial strain related to mental health care, the need for educational accommodations, and social isolation.  The key difference is the absence of a crisis event in Zara's case currently.
+
+* **Amina's case** illustrates the challenges of undiagnosed conditions affecting a child's development.  While Zara's diagnosis is clear, Amina's situation emphasizes the importance of comprehensive evaluation and the potential for significant financial burden in accessing specialized services.  Both cases demonstrate the intersection of health, educational, financial, and social challenges, particularly the necessity of advocacy for appropriate accommodations.  The key difference is the nature of the underlying condition.
+
+* **Maya's case** provides a stark contrast, emphasizing the potential negative consequences of untreated mental health conditions within a family context.  It highlights the severe impact of parental struggles on a child's well-being, although Zara's case currently lacks this element.  The similarities lie in the need for family support, potential financial strain, and the importance of securing appropriate resources. The key difference lies in the absence of parental substance abuse or neglect in Zara's situation.
+
+By comparing and contrasting these cases, we can better understand the potential trajectories of Zara's case, the factors influencing the outcome, and the importance of proactive intervention and resource management.  The absence of immediate safety concerns and the presence of supportive parents in Zara's case offer a more optimistic outlook compared to the more challenging situations presented in Alana and Maya's cases, but the financial pressures echo Amina's struggles, highlighting the need for accessible and affordable mental health services.
+

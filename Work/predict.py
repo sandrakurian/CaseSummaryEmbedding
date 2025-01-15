@@ -27,7 +27,7 @@ def main(main_case, similar_cases):
 
     similar_cases_str = ""
     for case in similar_cases:
-        similar_cases_str += f"{case}: {process_file_content(case, short=False)}\n"
+        similar_cases_str += f"{case[0]}: {process_file_content(case[0], short=False)}\n"
 
 
     prompt = (f"Analyze the following main case summary and three similar case summaries. Based on the provided information, predict possible future outcomes with a detailed analysis, and justify these predictions with logical reasoning. Please structure the response as follows:\n\n1. **Analysis**: In this section, provide a comprehensive analysis of the main case and its possible future outcomes, supported by reasoning.\n2. **Predictions**: List your predictions in bullet points, making sure to explicitly state the possible future outcomes based on the case information.\n3. **Referrals**: In this section, explain how the similar cases were used to enhance the prediction and analysis for the main case. Discuss the similarities and differences that influenced the predictions.\n\n**Main Case Summary:**\n{process_file_content(main_case, short=False)}\n\n**Similar Case Summaries:**\n{similar_cases_str}")
