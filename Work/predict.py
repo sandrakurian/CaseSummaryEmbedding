@@ -1,20 +1,27 @@
-from common_fx import process_file_content, setup_logger
-
+import os
+from dotenv import load_dotenv
 import requests
 import json
+
 from sentence_transformers import SentenceTransformer
+from common_fx import process_file_content, setup_logger
 
+# Set up the logger by calling the setup_logger function
+logger = setup_logger()
 
+# Load .env file
+load_dotenv()
 # get API key from https://aistudio.google.com/app/apikey?_gl=1*fx1u9i*_ga*MTY0MDI0ODg4LjE3MzY4NjM5NTU_ga_P1DBVKWT6V*MTczNjg2Mzk1NC4xLjAuMTczNjg2Mzk1NC42MC4wLjkwMDI1MzA1Mg..
-api_key = "AIzaSyB0J_R2ODAYEkOHJLswiEB-VrASO-sVq2o"
+api_key = os.getenv("SECRET_KEY")
+if api_key:
+    logger.info("Secret key loaded successfully.")
+else:
+    logger.error("Secret key not found. Did you forget to set up the .env file?")
 url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
 
 
 # Initialize the model
 model = SentenceTransformer('all-mpnet-base-v2')
-
-# Set up the logger by calling the setup_logger function
-logger = setup_logger()
 
 def main(main_case, similar_cases):
 
