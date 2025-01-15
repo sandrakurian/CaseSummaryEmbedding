@@ -1,5 +1,6 @@
 # Case Prediction Writeup  
 
+please look in the [Work folder](/Work/) to find relavent informaton
 
 ## Table of Contents
 1. [Objective](#objective)
