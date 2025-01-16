@@ -164,7 +164,7 @@ The log shows the most similar cases identified for a given case.
 
 # Prompts to Make Example Cases
 
-==**CASES IN THIS FOLDER ARE NOT REAL**==
+### **CASES IN THIS FOLDER ARE NOT REAL**
 
 The examples listed in the [Example Cases Folder](ExampleCases) are from chatGPT. These are the prompts that I used:
 
