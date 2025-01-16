@@ -5,7 +5,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from datetime import datetime
-from common_fx import process_file_content, setup_logger
+from common_fx import process_file_content, setup_logger, generate_content
 
 # Initialize the model
 model = SentenceTransformer('all-mpnet-base-v2')
@@ -68,7 +68,7 @@ def save_embeddings(file_path, case_id, section_embeddings):
     try:
         with open(file_path, 'w') as file:
             json.dump(data, file, indent=2, separators=(',', ': '), ensure_ascii=False)
-        logger.info(f"Embeddings for case {case_id} saved successfully.")
+        # logger.info(f"Embeddings for case {case_id} saved successfully.")
     except Exception as e:
         logger.error(f"An error occurred while saving the file (embed.py): {e}")
 
@@ -79,7 +79,7 @@ def embedding_exist(existing_embeddings, case_id):
     """
     if case_id in existing_embeddings:
         return case_id, existing_embeddings[case_id]
-    logger.warning(f"{case_id} does not have a summary embedding. Summarize the case before clicking 'sandra'")
+    logger.warning(f"{case_id} does not have a summary embedding. Summarize the case before clicking 'similar'")
     return None
 
 def find_section_similarities(case_id, target_case_id, case_embeddings, target_case_embeddings):
@@ -132,13 +132,13 @@ def summary(file_path, case_id, output):
     # Save embeddings to file
     save_embeddings(file_path, case_id, section_embeddings)
 
-def sandra(file_path, case_id):
+def similar(file_path, case_id):
     # Load existing embeddings from the JSON file
     existing_embeddings = load_existing_data(file_path)
             
     # Check if the case_id exists in the existing embeddings
     if case_id not in existing_embeddings:
-        raise ValueError(f"Case {case_id} does not have an embedding. You must first summarize the case before proceeding. (embed.py/sandra())")
+        raise ValueError(f"Case {case_id} does not have an embedding. You must first summarize the case before proceeding. (embed.py/similar())")
             
     # Get the embedding for the current case
     target_case_embeddings = existing_embeddings[case_id]
@@ -167,6 +167,10 @@ def sandra(file_path, case_id):
             logger.info("\tSections that were not compared:")
             for section in not_compared_sections:
                 logger.info(f"\t\t{section}")
+
+        prompt = f"Compare these two cases based on the situations and contexts they describe, not just the exact wording or phrasing.\nCase 1: {case_id}\n{process_file_content(case_id, False)}\nCase 2: {similar_case}\n{process_file_content(similar_case, False)}\n\nTasks:\n1. In one paragraph, explain how the two cases are similar, focusing on the underlying situations, challenges, and dynamics.\n2. In another paragraph, explain how the two cases are different, highlighting key distinctions in context or circumstances.\n3. Provide an integer score between 1 and 10 to rate their similarity, where:\n\t- 1 means the cases are completely unrelated.\n\t- 10 means the cases are almost identical in terms of situations and context."
+
+        generate_content(prompt)
     
     return top_similar_cases
 
@@ -190,12 +194,12 @@ if __name__ == "__main__":
 
 def main(case_id, output, str_button):
     # Log inputs
-    log_inputs(case_id, output, str_button)
+    # log_inputs(case_id, output, str_button)
 
     file_path = "C:\\Users\\Kurian-Sandra\\Desktop\\CaseSummaryEmbedding\\Work\\embeddings.json"
 
     if str_button == "summary":
         summary(file_path, case_id, output)
-    elif str_button == "sandra":
-        top_similar = sandra(file_path, case_id)
+    elif str_button == "similar":
+        top_similar = similar(file_path, case_id)
         return top_similar
