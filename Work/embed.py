@@ -5,7 +5,7 @@ import numpy as np
 from sentence_transformers import SentenceTransformer
 from sklearn.metrics.pairwise import cosine_similarity
 from datetime import datetime
-from common_fx import process_file_content, setup_logger
+from common_fx import process_file_content, setup_logger, generate_content
 
 # Initialize the model
 model = SentenceTransformer('all-mpnet-base-v2')
@@ -167,6 +167,10 @@ def similar(file_path, case_id):
             logger.info("\tSections that were not compared:")
             for section in not_compared_sections:
                 logger.info(f"\t\t{section}")
+
+        prompt = f"Compare these two cases based on the situations and contexts they describe, not just the exact wording or phrasing.\nCase 1: {case_id}\n{process_file_content(case_id, False)}\nCase 2: {similar_case}\n{process_file_content(similar_case, False)}\n\nTasks:\n1. In one paragraph, explain how the two cases are similar, focusing on the underlying situations, challenges, and dynamics.\n2. In another paragraph, explain how the two cases are different, highlighting key distinctions in context or circumstances.\n3. Provide an integer score between 1 and 10 to rate their similarity, where:\n\t- 1 means the cases are completely unrelated.\n\t- 10 means the cases are almost identical in terms of situations and context."
+
+        generate_content(prompt)
     
     return top_similar_cases
 
