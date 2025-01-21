@@ -22,7 +22,7 @@ if __name__ == "__main__":
     # summary(target_folder)
 
     print("-----")
-    case = "Zara.txt"
+    case = "Sarah.txt"
 
     top_similar_cases = embed_main(case, None, "similar")
     print("-----")

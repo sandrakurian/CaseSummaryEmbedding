@@ -87,6 +87,7 @@ def find_most_similar_cases(case_id, target_case_embeddings, existing_embeddings
             # Calculate similarity
             similarity = cosine_similarity(target_reshaped, other_reshaped)[0][0]
             similarities.append((other_case_id, similarity))
+            print(f"{other_case_id:<20}  {similarity}")
 
     # Sort by similarity score in descending order
     similarities.sort(key=lambda x: x[1], reverse=True)
@@ -99,7 +100,7 @@ def summary(file_path, case_id, output):
     save_embeddings(file_path, case_id, section_embeddings)
 
 def similar(file_path, case_id):
-    """Find and log the most similar cases to a given case."""
+    """Find and log the most similar cases with detailed section comparisons."""
     existing_embeddings = load_existing_data(file_path)
     if case_id not in existing_embeddings:
         raise ValueError(f"Case {case_id} does not have an embedding. Summarize the case first.")
@@ -107,17 +108,47 @@ def similar(file_path, case_id):
     target_case_embeddings = existing_embeddings[case_id]
     top_similar_cases = find_most_similar_cases(case_id, target_case_embeddings, existing_embeddings)
     
-    # Print results for logging
-    print("Top similar cases:")
+    # Print header with top similar cases
+    print(f"\nTop 3 most similar cases to {case_id}:")
     for similar_case, similarity_score in top_similar_cases:
-        print(f"Case {similar_case}: Similarity {similarity_score:.4f}")
-
-        prompt = f"Compare these two cases based on the situations and contexts they describe, not just the exact wording or phrasing.\nCase 1: {case_id}\n{process_file_content(case_id, False)}\nCase 2: {similar_case}\n{process_file_content(similar_case, False)}\n\nTasks:\n1. In one paragraph, explain how the two cases are similar, focusing on the underlying situations, challenges, and dynamics.\n2. In another paragraph, explain how the two cases are different, highlighting key distinctions in context or circumstances.\n3. Provide an integer score between 1 and 10 to rate their similarity, where:\n\t- 1 means the cases are completely unrelated.\n\t- 10 means the cases are almost identical in terms of situations and context."
-        generate_content(prompt)
+        print(f"\tCase {similar_case} Similarity: {similarity_score:.4f}")
     
-    # Return the results
+    # For each similar case, analyze section similarities and generate comparison
+    for similar_case, overall_similarity in top_similar_cases:
+        print(f"\nSection similarities for case {similar_case}:")
+        
+        # Print the case content first
+        case_content = process_file_content(similar_case, False)
+        print(f"\t{case_content}\n")
+        
+        # Get section similarities
+        similar_case_embeddings = existing_embeddings[similar_case]
+        section_similarities = find_section_similarities(
+            similar_case_embeddings, 
+            target_case_embeddings
+        )
+        
+        # Print section-by-section similarities
+        for section, similarity in section_similarities.items():
+            print(f"\tSection: {section}, Similarity: {similarity:.4f}")
+        
+        # Generate detailed comparison using the content
+        prompt = (
+            f"Compare these two cases based on the situations and contexts they describe, "
+            f"not just the exact wording or phrasing.\n"
+            f"Case 1: {case_id}\n{process_file_content(case_id, False)}\n"
+            f"Case 2: {similar_case}\n{case_content}\n\n"
+            f"Tasks:\n"
+            f"1. In one paragraph, explain how the two cases are similar, focusing on the "
+            f"underlying situations, challenges, and dynamics.\n"
+            f"2. In another paragraph, explain how the two cases are different, highlighting "
+            f"key distinctions in context or circumstances."
+        )
+        
+        comparison = generate_content(prompt)
+        print(f"\n\t{comparison}\n")
+    
     return top_similar_cases
-
 if __name__ == "__main__":
     try:
         # Capture the arguments passed to the script
