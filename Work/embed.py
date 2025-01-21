@@ -1,179 +1,122 @@
 import os
-import sys
 import json
 import numpy as np
-from sentence_transformers import SentenceTransformer
+from transformers import AutoTokenizer, AutoModel
 from sklearn.metrics.pairwise import cosine_similarity
 from datetime import datetime
-from common_fx import process_file_content, setup_logger, generate_content
+from common_fx import process_file_content, generate_content
 
-# Initialize the model
-model = SentenceTransformer('all-mpnet-base-v2')
-
-# Set up the logger by calling the setup_logger function
-logger = setup_logger()
-
-def log_inputs(case_id, output, str_button):
-    """Log info about the case being processed."""
-    logger.info(f"Processing FSFNPersonID+case: {case_id}")
-    logger.info(f"Processing with button: {str_button}")
+# Initialize the model and tokenizer
+model_name = "nlpaueb/legal-bert-base-uncased"
+tokenizer = AutoTokenizer.from_pretrained(model_name)
+model = AutoModel.from_pretrained(model_name)
 
 def load_existing_data(file_path):
-    """
-    Check if the file exists and load existing data.
-    Returns contents/dictionary in file or empty dict {}
-    """
+    """Load existing embeddings from a JSON file."""
     if os.path.exists(file_path):
         try:
             with open(file_path, 'r') as file:
                 return json.load(file)
         except Exception as e:
-            logger.error(f"Error loading file (embed.py): {e}")
+            print(f"Error loading file: {e}")
     return {}
 
+def embed_text(text):
+    """Generate embeddings for a given text using LEGAL-BERT."""
+    inputs = tokenizer(text, return_tensors="pt", truncation=True, max_length=512, padding="max_length")
+    outputs = model(**inputs)
+    # Pooling: Take the mean across the sequence length (dim=1)
+    pooled_embedding = outputs.last_hidden_state.mean(dim=1).squeeze().detach().numpy()
+    return pooled_embedding  # Shape: [embedding_size]
+
+
+
 def embed_sections(case_summary):
-    """
-    Generate embeddings for each section in the case summary.
-    Returns dictionary containing the section titles as keys and their corresponding embeddings
-    """
+    """Generate embeddings for each section in the case summary."""
     embeddings = {}
-    sections = case_summary.split('###')  # Split the string by headers
+    sections = case_summary.split('###')  # Split the summary into sections
     for section in sections:
-        if section.strip():  # Skip empty sections
+        if section.strip():
             lines = section.strip().split('\n', 1)
-            title = lines[0].strip()  # Extract the title
-            content = lines[1].strip() if len(lines) > 1 else ""  # Extract the content
-            if content.startswith("-") or content.startswith("1."):  # Check if it's a list
-                items = [item.strip() for item in content.split('\n') if item.strip()]
-                embeddings[title] = np.mean([model.encode(item) for item in items], axis=0)
-            else:  # Process as a paragraph
-                embeddings[title] = model.encode(content)
+            title = lines[0].strip()  # Extract the section title
+            content = lines[1].strip() if len(lines) > 1 else ""
+            embeddings[title] = embed_text(content)  # 1D array for each section
     return embeddings
 
+
 def save_embeddings(file_path, case_id, section_embeddings):
-    """Save or update the section embeddings for a case in the JSON file."""
+    """Save or update section embeddings for a case in the JSON file."""
     data = load_existing_data(file_path)
     serializable_embeddings = {k: v.tolist() for k, v in section_embeddings.items()}
-
-    # Add or update embeddings for the case
     data[case_id] = serializable_embeddings
-
-    # Log if updating or adding a case
-    if case_id in data:
-        logger.info(f"Updating case: {case_id}")
-    else:
-        logger.info(f"Adding case: {case_id}")
-
-    # Save updated data to the file
     try:
         with open(file_path, 'w') as file:
             json.dump(data, file, indent=2, separators=(',', ': '), ensure_ascii=False)
-        # logger.info(f"Embeddings for case {case_id} saved successfully.")
     except Exception as e:
-        logger.error(f"An error occurred while saving the file (embed.py): {e}")
+        print(f"Error saving file: {e}")
 
-def embedding_exist(existing_embeddings, case_id):
-    """
-    Check if a given case_id exists in the existing embeddings.
-    Returns (case_id, embedding) if found, otherwise None.
-    """
-    if case_id in existing_embeddings:
-        return case_id, existing_embeddings[case_id]
-    logger.warning(f"{case_id} does not have a summary embedding. Summarize the case before clicking 'similar'")
-    return None
-
-def find_section_similarities(case_id, target_case_id, case_embeddings, target_case_embeddings):
-    """
-    Compares the embeddings of each common section between the case_id and target_case_id.
-    Returns a dictionary where keys are section titles and values are cosine similarity scores.
-    Also returns sections that were not compared.
-    """
+def find_section_similarities(case_embeddings, target_case_embeddings):
+    """Compute cosine similarity for each common section between two cases."""
     section_similarities = {}
-    not_compared_sections = []
-
-    # Find common sections
     common_sections = set(case_embeddings.keys()).intersection(target_case_embeddings.keys())
-    
-    # Compare sections
     for section in common_sections:
         case_section_embedding = case_embeddings[section]
-        target_case_section_embedding = target_case_embeddings[section]
-        
-        # Compute cosine similarity for the section
-        similarity = cosine_similarity([case_section_embedding], [target_case_section_embedding])[0][0]
+        target_section_embedding = target_case_embeddings[section]
+        similarity = cosine_similarity([case_section_embedding], [target_section_embedding])[0][0]
         section_similarities[section] = similarity
-
-    # Find sections that were not compared
-    not_compared_sections = list(set(case_embeddings.keys()).union(target_case_embeddings.keys()) - set(common_sections))
-
-    return section_similarities, not_compared_sections
+    return section_similarities
 
 def find_most_similar_cases(case_id, target_case_embeddings, existing_embeddings, top_n=3):
-    """
-    Find the top N most similar cases to the given case based on cosine similarity.
-    """
+    """Find the top N most similar cases to the given case based on cosine similarity."""
     similarities = []
     
-    for other_case_id, other_case_embeddings in existing_embeddings.items():
-        if other_case_id != case_id:  # Skip the case itself
-            # Compute similarity for the entire case (you can modify this to compute section-level similarity)
-            case_embedding = np.mean(list(target_case_embeddings.values()), axis=0)
-            other_case_embedding = np.mean(list(other_case_embeddings.values()), axis=0)
-            similarity = cosine_similarity([case_embedding], [other_case_embedding])[0][0]
-            similarities.append((other_case_id, similarity))
+    # Convert target embeddings to numpy array and ensure it's 2D
+    target_embeddings = np.array(list(target_case_embeddings.values()))
+    target_avg_embedding = np.mean(target_embeddings, axis=0)
     
-    # Sort by similarity and return the top N
+    for other_case_id, other_case_embeddings in existing_embeddings.items():
+        if other_case_id != case_id:
+            # Convert other case embeddings to numpy array and ensure it's 2D
+            other_embeddings = np.array(list(other_case_embeddings.values()))
+            other_avg_embedding = np.mean(other_embeddings, axis=0)
+            
+            # Reshape embeddings to 2D arrays (needed for cosine_similarity)
+            target_reshaped = target_avg_embedding.reshape(1, -1)
+            other_reshaped = other_avg_embedding.reshape(1, -1)
+            
+            # Calculate similarity
+            similarity = cosine_similarity(target_reshaped, other_reshaped)[0][0]
+            similarities.append((other_case_id, similarity))
+
+    # Sort by similarity score in descending order
     similarities.sort(key=lambda x: x[1], reverse=True)
     return similarities[:top_n]
 
+
 def summary(file_path, case_id, output):
-    # Generate embeddings
+    """Generate and save embeddings for a case summary."""
     section_embeddings = embed_sections(output)
-    # Save embeddings to file
     save_embeddings(file_path, case_id, section_embeddings)
 
 def similar(file_path, case_id):
-    # Load existing embeddings from the JSON file
+    """Find and log the most similar cases to a given case."""
     existing_embeddings = load_existing_data(file_path)
-            
-    # Check if the case_id exists in the existing embeddings
     if case_id not in existing_embeddings:
-        raise ValueError(f"Case {case_id} does not have an embedding. You must first summarize the case before proceeding. (embed.py/similar())")
-            
-    # Get the embedding for the current case
-    target_case_embeddings = existing_embeddings[case_id]
-
-    # Find the top 3 most similar cases
-    top_similar_cases = find_most_similar_cases(case_id, target_case_embeddings, existing_embeddings)
-    print(" ".join(item[0] for item in top_similar_cases))
+        raise ValueError(f"Case {case_id} does not have an embedding. Summarize the case first.")
     
-    logger.info(f"Top 3 most similar cases to {case_id}:")
-    logger.info(process_file_content(case_id, short=True))
+    target_case_embeddings = existing_embeddings[case_id]
+    top_similar_cases = find_most_similar_cases(case_id, target_case_embeddings, existing_embeddings)
+    
+    # Print results for logging
+    print("Top similar cases:")
     for similar_case, similarity_score in top_similar_cases:
-        logger.info(f"\tCase {similar_case} Similarity: {similarity_score:.4f}")
-
-    # Now compare the common sections between the current case and the most similar cases
-    for similar_case, _ in top_similar_cases:
-        similar_case_embeddings = existing_embeddings[similar_case]
-        
-        section_similarities, not_compared_sections = find_section_similarities(case_id, similar_case, target_case_embeddings, similar_case_embeddings)
-        
-        logger.info(f"\nSection similarities for case {similar_case}:")
-        logger.info(process_file_content(similar_case, short=True))
-        for section, similarity in section_similarities.items():
-            logger.info(f"\tSection: {section}, Similarity: {similarity:.4f}")
-                
-        if not_compared_sections:
-            logger.info("\tSections that were not compared:")
-            for section in not_compared_sections:
-                logger.info(f"\t\t{section}")
+        print(f"Case {similar_case}: Similarity {similarity_score:.4f}")
 
         prompt = f"Compare these two cases based on the situations and contexts they describe, not just the exact wording or phrasing.\nCase 1: {case_id}\n{process_file_content(case_id, False)}\nCase 2: {similar_case}\n{process_file_content(similar_case, False)}\n\nTasks:\n1. In one paragraph, explain how the two cases are similar, focusing on the underlying situations, challenges, and dynamics.\n2. In another paragraph, explain how the two cases are different, highlighting key distinctions in context or circumstances.\n3. Provide an integer score between 1 and 10 to rate their similarity, where:\n\t- 1 means the cases are completely unrelated.\n\t- 10 means the cases are almost identical in terms of situations and context."
-
         generate_content(prompt)
     
+    # Return the results
     return top_similar_cases
-
 
 if __name__ == "__main__":
     try:
