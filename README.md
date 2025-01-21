@@ -80,7 +80,7 @@ Once embeddings are stored, the system can analyze similarities between cases:
 The system is designed to respond to two primary user actions:
 
 - **Summary**: When the user selects the "summary" button, the system generates embeddings for the case summary and stores them in the JSON file. This allows the system to later compare the case with others.
-- **Similarity Search ("Sandra")**: When the user selects the "sandra" button, the system loads existing embeddings, calculates similarities between the current case and all other cases, and identifies the most similar cases. It then compares sections of the current case with those of the similar cases and reports the similarities for further analysis.
+- **Similarity Search**: When the user selects the "similar" button, the system loads existing embeddings, calculates similarities between the current case and all other cases, and identifies the most similar cases. It then compares sections of the current case with those of the similar cases and reports the similarities for further analysis.
 
 ---
 
